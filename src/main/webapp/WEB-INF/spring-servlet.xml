@@ -7,6 +7,58 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
        
        
+       <!-- Specifying base package of the Components like Controller, Service, DAO -->
+	<context:component-scan base-package="com.oosdclass.taskTrackerApp2" />
+	<!-- Getting Database properties -->
+	<context:property-placeholder location="classpath:application.properties" />
+	<mvc:annotation-driven />
+
+
+	<!-- UserDAOImpl bean(object) is dependent on jdbcTemplate to perform CRUD -->
+	<!-- So we are informing spring that UserDAOImpl is a bean and its dependent 
+		on jdbc template -->
+	<!-- So spring will inject the jdbcTemplate dependency into UserDAOImpl 
+		when required -->
+	<bean id="userDAOImpl" class="com.oosdclass.taskTrackerApp2.dao.impl.UserDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- jdbc template requires data source(connection to DB example: db URL, 
+		username, Pass) and driver -->
+	<!-- to connect to DB and perform CRUD -->
+	<!-- We are informing spring to inject datasource dependency into jdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+
+
+
+	<!-- Specifying the Resource location to load JS, CSS, Images etc -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- View Resolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- DataSource -->
+	<!-- We are defining the data sources properties like driver name, username, 
+		URL and password -->
+	<!-- That we specified in src/main/resources/application.properties file -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
+		<property name="driverClassName" value="${database.driver}"></property>
+		<property name="url" value="${database.url}"></property>
+		<property name="username" value="${database.user}"></property>
+		<property name="password" value="${database.password}"></property>
+	</bean>
+       
+       
+       
        
        
 </beans>       
