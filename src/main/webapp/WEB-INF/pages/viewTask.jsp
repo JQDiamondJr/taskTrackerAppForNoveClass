@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <link href="${contextPath}/resources/dist/css/bootstrap.css"
 	rel="stylesheet">
 <div class="container">
@@ -17,19 +17,14 @@
 
 				</tr>
 			</thead>
-			<c:forEach var="task" items= "${taskList}">
-			
-		<tr>
-				
-				<td>${task.taskID}</td>
-				<td>${task.description}</td>
-				<td>${task.assignedTo}</td>
-				<td>${task.status}</td>
-				
+			<c:forEach var="task" items="${taskList}">
+				<tr>
+					<td>${task.taskID}</td>
+					<td>${task.description}</td>
+					<td>${task.assignedTo}</td>
+					<td>${task.status}</td>
 				</tr>
-				
 			</c:forEach>
-			
 		</table>
 	</div>
 </div>

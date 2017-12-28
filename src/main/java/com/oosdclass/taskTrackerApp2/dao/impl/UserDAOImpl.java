@@ -14,22 +14,13 @@ import com.oosdclass.taskTrackerApp2.model.User;
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-	// userDAOImpl is dependent on jdbc template
-	// so we need to inject the dependency
-
-	// jdbc template is a class provided by spring jdbc
-	// to perform CRUD and map data in rows to objects
 	private JdbcTemplate jdbcTemplate;
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	// This Class must implement UserDAO Interface and implement
-	// all abstract methods for
-	// example: retrieveUserByUserName(String Username);-> returns
-	// User Object by using spring JDBC to connect to DB and
-	// retrieve data from User table
+	
 	@Override
 	public User retrieveByUserName(String username) {
 		try {

@@ -22,6 +22,9 @@
 	<bean id="userDAOImpl" class="com.oosdclass.taskTrackerApp2.dao.impl.UserDAOImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
+	<bean id="taskDAOImpl" class="com.oosdclass.taskTrackerApp2.dao.impl.TaskDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		</bean>
 
 	<!-- jdbc template requires data source(connection to DB example: db URL, 
 		username, Pass) and driver -->

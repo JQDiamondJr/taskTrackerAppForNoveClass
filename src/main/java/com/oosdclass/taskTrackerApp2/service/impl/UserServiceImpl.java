@@ -18,13 +18,7 @@ public class UserServiceImpl implements UserService {
 
 		User userFromDb = userDAO.retrieveByUserName(user.getUsername());
 
-		// if no user with username exists in the DB return false
-		if (userFromDb == null) {
-			return false;
-		}
-
-		// if username/password typed in by user matches username/password from db
-		// return true
+		
 		if (user.getUsername().equals(userFromDb.getUsername())
 				&& user.getPassword().equals(userFromDb.getPassword())) {
 			return true;
@@ -32,4 +26,33 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 	}
+	@Override
+	public boolean doesUserExist(User user) {
+
+		User userFromDb = userDAO.retrieveByUserName(user.getUsername());
+
+		// if no user with username exists in the DB return false
+		if (userFromDb == null) {
+			return false;
+		} else {
+		return true ;
+		}
 }
+	@Override
+	public boolean isUserAdmin(User user) {
+
+		User userFromDb = userDAO.retrieveByUserName(user.getUsername());
+		
+		if(userFromDb.getUsername().equals("admin")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+		
+		
+		
+		
+		
+		
